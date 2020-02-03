@@ -1,4 +1,4 @@
 // Configuration options and settings for rtlSdrCamera
-#define rtlSdrCamera_VERSION_MAJOR @rtlSdrCamera_VERSION_MAJOR@
-#define rtlSdrCamera_VERSION_MINOR @rtlSdrCamera_VERSION_MINOR@
-#define rtlSdrCamera_VERSION_PATCH @rtlSdrCamera_VERSION_PATCH@
+#define RTLSDRCAMERA_VERSION_MAJOR "${rtlSdrCamera_VERSION_MAJOR}"
+#define RTLSDRCAMERA_VERSION_MINOR "${rtlSdrCamera_VERSION_MINOR}"
+#define RTLSDRCAMERA_VERSION_PATCH "${rtlSdrCamera_VERSION_PATCH}"

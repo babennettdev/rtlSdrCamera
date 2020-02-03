@@ -3,7 +3,16 @@ cmake_minimum_required(VERSION 3.10.2)
 # Set the project name and version number
 project(rtlSdrCamera CXX)
 
-add_executable(rtlSdrCamera rtlSdrCamera.cpp)
+# Set compiler flags
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fPIC")
+set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG} -O0 -ggdb")
+set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG} -O0 -ggdb")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -ggdb")
+
+# Project version
+set(rtlSdrCamera_VERSION_MAJOR "0")
+set(rtlSdrCamera_VERSION_MINOR "1")
+set(rtlSdrCamera_VERSION_PATCH "0")
 
 # configure header file
 configure_file(
@@ -13,7 +22,9 @@ configure_file(
 
 add_subdirectory(src)
 
-# Project version
-set(VERSION_MAJOR 0)
-set(VERSION_MINOR 1)
-set(VERSION_PATCH 0)
+
+
+
+target_include_directories(rtlSdrCamera PUBLIC
+                           "${PROJECT_BINARY_DIR}"
+                           )
