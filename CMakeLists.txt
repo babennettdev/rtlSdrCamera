@@ -1,12 +1,19 @@
 cmake_minimum_required(VERSION 3.10.2)
 
 # Set the project name and version number
-project(rtlSdrCamera VERSION 0.1.0)
+project(rtlSdrCamera CXX)
 
 add_executable(rtlSdrCamera rtlSdrCamera.cpp)
 
-configure_file(rtlSdrCameraConfig.h.in rtlSdrCameraConfig.h)
+# configure header file
+configure_file(
+    ${PROJECT_SOURCE_DIR}/cmake/rtlSdrCameraConfig.h.in
+    ${PROJECT_BINARY_DIR}/rtlSdrCameraConfig.h
+    )
 
-target_include_directories(rtlSdrCamera PUBLIC
-							"${PROJECT_BINARY_DIR}"
-							)
+add_subdirectory(src)
+
+# Project version
+set(VERSION_MAJOR 0)
+set(VERSION_MINOR 1)
+set(VERSION_PATCH 0)
