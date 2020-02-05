@@ -14,6 +14,10 @@ set(rtlSdrCamera_VERSION_MAJOR "0")
 set(rtlSdrCamera_VERSION_MINOR "1")
 set(rtlSdrCamera_VERSION_PATCH "0")
 
+# Find packages
+find_package( OpenCV REQUIRED )
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+
 # configure header file
 configure_file(
     ${PROJECT_SOURCE_DIR}/cmake/rtlSdrCameraConfig.h.in
