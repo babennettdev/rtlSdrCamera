@@ -5,6 +5,7 @@
 #include <string>
 #include <opencv2/opencv.hpp>
 #include <rtl-sdr.h>
+#include "rtlSdrSource.h"
 
 #include "rtlSdrCameraConfig.h"
 
