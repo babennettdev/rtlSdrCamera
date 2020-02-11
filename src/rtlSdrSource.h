@@ -31,6 +31,8 @@ public:
 	double getCenterFrequency();
 	/** Get the sample rate of the rtl-sdr*/
 	double getSampleRate();
+	/** Get the device pointer of the rtl-sdr*/
+	//*rtlsdr_dev_t getDeviceObject();
 
 	/** Setters */
 	/** Set the device ID of the rtl-sdr */
@@ -47,6 +49,8 @@ private:
 	double	center_frequency_;
 	/** Holds the sample rate of the rtl-sdr. */
 	double	sample_rate_;
+	/** Holds the rtl-sdr device object. */
+	rtlsdr_dev_t *device_;
 };
 
 #endif
