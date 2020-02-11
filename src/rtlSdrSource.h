@@ -12,7 +12,8 @@ public:
 	*
 	*
 	*/
-	rtlSdrSource();
+	//rtlSdrSource();
+	
 	/** Constructor
 	*
 	* @param device_id

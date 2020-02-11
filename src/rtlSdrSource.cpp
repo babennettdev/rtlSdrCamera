@@ -1,12 +1,14 @@
 #include "rtlSdrSource.h"
 
+/**
 rtlSdrSource::rtlSdrSource():
 	device_id_(0), center_frequency_(915000000), sample_rate_(500000), device_(0)
 	{
 		// Do nothing
 	}
+*/
 
-rtlSdrSource::rtlSdrSource(int device_id, double center_frequency, double sample_rate):
+rtlSdrSource::rtlSdrSource(int device_id = 0, double center_frequency = 915000000, double sample_rate = 500000):
 	device_id_(device_id), center_frequency_(center_frequency), sample_rate_(sample_rate),
 	device_(0)
 	{
