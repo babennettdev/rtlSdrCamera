@@ -2,6 +2,9 @@
 #define RTLSDRSOURCE_H
 
 #include <rtl-sdr.h>
+#include <vector>
+#include <complex>
+
 
 class rtlSdrSource
 {
@@ -13,7 +16,7 @@ public:
 	*
 	*/
 	//rtlSdrSource();
-	
+
 	/** Constructor
 	*
 	* @param device_id
@@ -43,6 +46,9 @@ public:
 	/** Set the sample rate of the rtl-sdr*/
 	void setSampleRate(double sample_rate);
 
+	/** This function returns a vector of IQ data to be processed */
+	std::vector<std::complex<double>> readIqSamples(int iq_block_length);
+
 private:
 	/** Holds the device ID of the rtl-sdr. */
 	int		device_id_;
@@ -52,6 +58,7 @@ private:
 	double	sample_rate_;
 	/** Holds the rtl-sdr device object. */
 	rtlsdr_dev_t *device_;
+
 };
 
 #endif
