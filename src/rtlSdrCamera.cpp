@@ -3,6 +3,9 @@
 // Includes
 #include <iostream>
 #include <string>
+#include <vector>
+#include <complex>
+
 #include <opencv2/opencv.hpp>
 #include <rtl-sdr.h>
 #include "rtlSdrSource.h"
@@ -17,19 +20,28 @@ int main(int argc, char* argv[])
 	std::cout << argv[0] << " Version " << RTLSDRCAMERA_VERSION_MAJOR << "."
 		<< RTLSDRCAMERA_VERSION_MINOR << "." << RTLSDRCAMERA_VERSION_PATCH
 		<< std::endl;
-	std::cout << "Usage: " << argv[0]  << "Device ID (default 0)" << "Tune frequency " 
-		<< "<Test_Image_Path>" << std::endl;
+	std::cout << "Usage: " << argv[0]  << "[ Device ID (default 0)] " << "[Tune frequency] " 
+		<< "[Sample rate] " << std::endl;
 	return 1;
 	}
 
 	// Simple OpenCV test to check if library is working... eventually move to a test directory?
+	/*
 	cv::Mat testImage;
 	testImage = cv::imread( argv[3], 1);
 	cv::namedWindow("Test Image", cv::WINDOW_AUTOSIZE );
 	cv::imshow("Test Image", testImage);
 	cv::waitKey(0);
+	*/
 
+	rtlSdrSource rtl_sdr_source(atoi(argv[1]), atof(argv[2]), atof(argv[3]));
+	std::vector<std::complex<double>> iq_vector (1024);
+	for(int j = 0; j < 2000000000 ; j++){}
+	iq_vector = rtl_sdr_source.readIqSamples(1024);
 
+	for (int i = 0; i < iq_vector.size(); i++){
+		std::cout << iq_vector.at(i) << std::endl;
+	}
 
 	//TODO main function processing
 

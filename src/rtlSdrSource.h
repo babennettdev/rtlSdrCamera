@@ -2,6 +2,7 @@
 #define RTLSDRSOURCE_H
 
 #include <rtl-sdr.h>
+#include <iostream>
 #include <vector>
 #include <complex>
 

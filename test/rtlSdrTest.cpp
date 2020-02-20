@@ -3,20 +3,23 @@
 *
 */
 
+
+
+
 // Includes
 #include <iostream>
 #include <string>
 #include "rtlSdrSource.h"
+int main(int argc, char* argv[]){
+	return 0;
+}
 
+/*
 static rtlsdr_dev_t *dev = NULL;
 
 int main(int argc, char* argv[])
 {
-	/**
-	std::cout << argv[0] << " Version " << RTLSDRCAMERA_VERSION_MAJOR << "."
-		<< RTLSDRCAMERA_VERSION_MINOR << "." << RTLSDRCAMERA_VERSION_PATCH
-		<< std::endl;
-	*/
+
 	if (argc < 4){
 		std::cout << "Usage: " << argv[0]  << " [Device ID]" << " [Tune frequency]" 
 			<<  " [Sample rate]" << std::endl;
@@ -68,3 +71,5 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
+
+*/
