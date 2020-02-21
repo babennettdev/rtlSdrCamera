@@ -8,7 +8,7 @@ rtlSdrSource::rtlSdrSource():
 	}
 */
 
-rtlSdrSource::rtlSdrSource(int device_id = 0, double center_frequency = 915000000, double sample_rate = 500000):
+rtlSdrSource::rtlSdrSource(int device_id = 0, double center_frequency = 915000000, double sample_rate = 500000, int frequency_correction, double tuner_bandwidth = 5000000):
 	device_id_(device_id), center_frequency_(center_frequency), sample_rate_(sample_rate),
 	device_(0)
 	{
@@ -18,13 +18,19 @@ rtlSdrSource::rtlSdrSource(int device_id = 0, double center_frequency = 91500000
 			// TODO Handle rtlsdr_open error 
 			std::cout << "RTL-SDR NOT OPEN" << std::endl;
 		}
+		rtlsdr_set_center_freq(this->device_, this->center_frequency_);
+		rtlsdr_set_sample_rate(this->device_, this->sample_rate_);
+		rtlsdr_set_tuner_gain(this->device_, this->tuner_gain_;
+		rtlsdr_set_freq_correction(this->device_, this->frequency_correction_);
+		rtlsdr_set_tuner_bandwidth(this->device_, this->tuner_bandwidth_);
+
 	}
 
 rtlSdrSource::~rtlSdrSource(){
 	rtlsdr_close(device_);
 }
 
-
+/** Getters */
 int rtlSdrSource::getDeviceId(){
 	return this->device_id_;
 }
@@ -36,23 +42,47 @@ double rtlSdrSource::getCenterFrequency(){
 double rtlSdrSource::getSampleRate(){
 	return this->sample_rate_;
 }
-
-/** This getter does not work... I'm not sure if it's necessary anyway
-*rtlsdr_dev_t getDeviceObject(){
-	return this->device_;
+/*
+int getTunerGain(){
+	return this->tuner_gain_;
 }
 */
+int getFrequencyCorrection(){
+	return this->frequency_correction_;
+}
 
+double getTunerBandwidth(){
+	return this->tuner_bandwidth_;
+}
+
+/** Setters */
 void rtlSdrSource::setDeviceId(int device_id){
 	this->device_id_ = device_id;
 }
 
 void rtlSdrSource::setCenterFrequency(double center_frequency){
 	this->center_frequency_ = center_frequency;
+	rtlsdr_set_center_freq(this->device_, this->center_frequency_);
 }
 
 void rtlSdrSource::setSampleRate(double sample_rate){
 	this->sample_rate_ = sample_rate;
+	rtlsdr_set_sample_rate(this->device_, this->sample_rate_);
+}
+/*
+void setTunerGain(int tuner_gain){
+	this->tuner_gain_ = tuner_gain;
+	rtlsdr_set_tuner_gain(this->device_, this->tuner_gain_);
+}
+*/
+void setFrequencyCorrection(int frequency_correction){
+	this->frequency_correction_ = frequency_correction;
+	rtlsdr_set_freq_correction(this->device_, this->frequency_correction_);
+}
+
+void setTunerBandwidth(int tuner_bandwidth){
+	this->tuner_bandwidth_ = tuner_bandwidth;
+	rtlsdr_set_tuner_bandwidth(this->device_, this->tuner_bandwidth_);
 }
 
 std::vector<std::complex<double>> rtlSdrSource::readIqSamples(int iq_block_length){
