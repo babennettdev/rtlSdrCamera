@@ -39,9 +39,7 @@ int main(int argc, char* argv[])
 
 	rtlSdrSource rtl_sdr_source(atoi(argv[1]), atof(argv[2]), atof(argv[3]));
 	std::vector<std::complex<double>> iq_vector (block_size);
-	rtlsdr_reset_buffer(dev);
 	iq_vector = rtl_sdr_source.readIqSamples(block_size);
-
 	for (int i = 0; i < iq_vector.size(); i++){
 		std::cout << iq_vector.at(i) << std::endl;
 	}
