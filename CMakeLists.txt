@@ -65,7 +65,6 @@ configure_file(
 
 # Add subdirectories
 add_subdirectory(src)
-add_subdirectory(test)
 
 target_include_directories(rtlSdrCamera PUBLIC
                            "${PROJECT_BINARY_DIR}"
